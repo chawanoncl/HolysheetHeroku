@@ -141,12 +141,10 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/1.9/howto/static-files/
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-STATIC_URL = '/static/'
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'static'),
+)
 MEDIA_URL = '/media/'
 # Extra places for collectstatic to find static files.
 STATICFILES_DIRS = (
@@ -193,28 +191,3 @@ CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 STRIPE_PUBLISH_KEY= 'pk_test_51HpyrhA2rOP4Mq0SkJ8lAOpSWnEarmLoKmNgAHhdnfMjGYr6KGdKmrooYFzZiHYjrb5kMmykRIP2ZCmBW6MGdtmc00YiuMxPvU'
 STRIPE_SECRET_KEY= 'sk_test_51HpyrhA2rOP4Mq0SoX0RnvDZSy8JOnXtCRD4YSU9Zhgak7mOB4W5OmEQJe9pU5HeRBue8IOO9lTAMcujOkEaUe2D00fAfs3pTs'
-
-
-MIDDLEWARE_CLASSES = (
-    # Simplified static file serving.
-    # https://warehouse.python.org/project/whitenoise/
-    'whitenoise.middleware.WhiteNoiseMiddleware',
-    ...
-)
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-
-LOGGING = {
-    'version': 1,
-    'disable_existing_loggers': False,
-    'handlers': {
-        'console': {
-            'class': 'logging.StreamHandler',
-        },
-    },
-    'loggers': {
-        'django': {
-            'handlers': ['console'],
-            'level': os.getenv('DJANGO_LOG_LEVEL', 'ERROR'),
-        },
-    },
-}
