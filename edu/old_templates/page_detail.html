@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block nav %}
+ <li class="nav-item ">
+              <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" href="{% url 'sheets:sheet-list' %}">Sheet list</a>
+            </li>
+{% endblock nav %}
+{% block content %}
+
+<div class="row">
+<main class="col-md-4">
+
+  
+<div class="card" style="width: 18rem;">
+  <div class="card-header">{{ sheet.title }}</div>
+  <img src="{{ sheet.cover.url }}" class="card-img-top" alt="...">
+  <div class="card-body">
+    <p class="card-text">{{ sheet.description }}</p>
+  </div>
+</div>
+</main>
+ <aside class="col-md-8">
+ <div class="card">
+  <div class="card-header">
+    {{ sheet.title }}
+  </div>
+  <ul class="list-group list-group-flush">
+  {% for content in book.content_set.all %}
+    <li class="list-group-item">Cras justo odio</li>
+    <li class="list-group-item">Dapibus ac facilisis in</li>
+    <li class="list-group-item">Vestibulum at eros</li>
+    {% endfor %}
+  </ul>
+</div>
+ </aside>
+</div>
+{% endblock content %}

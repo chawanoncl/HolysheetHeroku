@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+<div class="row">
+  <main class="col-xs-12 col-sm-12 col-md-4">
+
+    {% include "sheet_snippet.html" with sheet=sheet %}
+
+  </main>
+  <aside class="col-xs-12 col-sm-12 col-md-8">
+
+    <div class="card">
+
+    {% if sheet in request.user.userlibrary.sheet_list %}
+
+      {% for page in sheet.page_set.all %}
+      <div class="accordion" id="toggle-{{ page.page_number }}">
+        <div class="card">
+          <div class="card-header" id="heading-{{ page.page_number }}">
+            <h2 class="mb-0">
+              <button class="btn btn-link" type="button" data-toggle="collapse"
+                data-target="#collapse-{{ page.page_number }}" aria-expanded="true"
+                aria-controls="collapse-{{ page.page_number }}">
+                Page {{ page.page_number}}
+              </button>
+            </h2>
+          </div>
+
+          <div id="collapse-{{ page.page_number }}" class="collapse" aria-labelledby="heading-{{ page.page_number }}"
+            data-parent="#toggle-{{ page.page_number }}">
+            <div class="card-body">
+              <img src="{{ page.img.url }}" class="card-img-top" alt="...">
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      {% endfor %}
+
+    {% else %}
+    <div class="text-center">
+    <h4>You don't have permission to watch this page.</h4>
+    </div>
+    {% endif %}
+    </div>
+  </aside>
+</div>
+{% endblock content %}

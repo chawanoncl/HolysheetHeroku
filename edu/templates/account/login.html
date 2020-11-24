@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+
+{% load i18n %}
+{% load account socialaccount %}
+
+{% block head_title %}{% trans "Sign In" %}{% endblock %}
+
+{% block content %}
+
+<ul class="menu">
+    <li class="menu-item"><a class="item" href="{% url 'index:sheet-preview' %}">Home</a></li>
+    <li class="menu-item"><a class="item" href="{% url 'sheets:sheet-list' %}">Sheet</a></li>
+</ul>
+
+<div class="container login-container">
+  <h1>{% trans "Sign In" %}</h1>
+
+  {% get_providers as socialaccount_providers %}
+
+  {% if socialaccount_providers %}
+
+
+
+
+  {% include "socialaccount/snippets/login_extra.html" %}
+
+  {% else %}
+  <p>{% blocktrans %}If you have not created an account yet, then please
+    <a href="{{ signup_url }}">sign up</a> first.{% endblocktrans %}</p>
+  {% endif %}
+
+  <form class="singin" method="POST" action="{% url 'account_login' %}">
+    {% csrf_token %}
+    {{ form|crispy }}
+    {% if redirect_field_value %}
+    <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+    {% endif %}
+    <p>{% blocktrans %}Don't have an account yet? Then please <a href="{{ signup_url }}">sign up</a>.{% endblocktrans %}
+    </p>
+    <button class="btn btn-primary" type="submit">{% trans "Sign In" %}</button>
+  </form>
+
+</div>
+{% endblock %}

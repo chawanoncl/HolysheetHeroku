@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<ul class="menu">
+  <li class="menu-item"><a class="item" href="{% url 'index:sheet-preview' %}">Home</a></li>
+  <li class="menu-item"><a class="item" href="{% url 'sheets:sheet-list' %}">Sheet</a></li>
+</ul>
+
+<section class="allsheet">
+  <h1 class="allsheet-head">All Sheet</h1>
+  <h4 class="allsheet-subhead">Select the sheet you are interested in</h4>
+  <div class="allsheet-container">
+
+    {% for sheet in queryset %}
+    <div class="allsheet-item">
+      <a href="{{ sheet.get_absolute_url }}"><img src="{{ sheet.cover.url }}" class="allsheet-pic"></a>
+      <div class="allsheet-info">
+        <div>
+          <h4>{{ sheet.title }}</h4>
+          <h6>
+            By {%  for author in sheet.authors.all %}
+            <span>{{ author }}</span>
+            {% endfor %}
+          </h6>
+          <a href="{{ sheet.get_absolute_url }}">read more</a>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+
+</section>
+
+
+{% endblock content %}

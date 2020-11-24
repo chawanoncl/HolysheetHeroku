@@ -1,0 +1,29 @@
+
+<h1>This is the sheet list</h1>
+<hr />
+<div class='container  align-items-center'>
+<div class="row">
+  {% for sheet in queryset %}
+  <div class="col-4">
+
+    <div class="card" style="width: 18rem;">
+      <img src="{{ sheet.cover.url }}" class="card-img-top" alt="...">
+      <div class="card-body">
+        <h5 class="card-title">{{ sheet.title }}</h5>
+
+
+        <h6 class="card-subtitle mb-2 text-muted">
+          By
+          {%  for author in sheet.authors.all %}
+          <span>{{ author }}</span>
+          {% endfor %}
+
+        </h6>
+
+        <a href="{{ sheet.get_absolute_url }}" class="card-link">{{ sheet }}</a>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+</div>

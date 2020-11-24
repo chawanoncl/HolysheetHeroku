@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<ul class="menu">
+    <li class="menu-item"><a class="item" href="{% url 'index:sheet-preview' %}">Home</a></li>
+    <li class="menu-item"><a class="item" href="{% url 'sheets:sheet-list' %}">Sheet</a></li>
+</ul>
+
+<section class="banner">
+    <h1 class="banner-text-head">Welcome to our Website</h1>
+    <h4 class="banner-text-sub-head">Do you look for some sheet ?</h4>
+    <a href="{% url 'account_login' %}" class="banner-btn">Get Started</a>
+</section>
+
+<section class="main">
+    <h1 class="main-text-head">This is some our sheet</h1>
+    <div class="demo-sheet-container">
+        {% for sheet in queryset|slice:":3" %}
+            <div class="demo-sheet-item">
+                <a href="{{ sheet.get_absolute_url }}"><img src="{{ sheet.cover.url }}" class="demo-sheet-pic">
+                    <div class="demo-sheet-detail">
+                        <h4 class="demo-sheet-name">{{ sheet.title }}</h4>
+                        <h5 class="demo-sheet-info">By
+                            {%  for author in sheet.authors.all %}
+                            <span>{{ author }}</span>
+                            {% endfor %}</h5>
+                    </div>
+                </a>
+            </div>
+        {% endfor %}  
+    </div>
+    <div class="main-footer">
+        <h4 class="main-text-sub-head">Not enough ?</h4>
+        <a href="{% url 'sheets:sheet-list' %}" class="main-btn">More</a>
+    </div>
+</section>
+
+{% endblock content %}

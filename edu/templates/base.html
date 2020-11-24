@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HolySheet</title>
+
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <script src="https://kit.fontawesome.com/aec8d13ce6.js"></script>
+  <link href="{% static 'css/style.css' %}" rel="stylesheet">
+</head>
+
+<body>
+  {% include "navbar.html" %}
+  {% include "messages.html" %}
+
+  {% block content %}
+  {% endblock content %}
+
+  <div class="footer">
+    <h1 class="aboutus-text-head">About US</h1>
+    <h4 class="aboutus-text-sub-head">Do you have to contact us ?</h4>
+    <div class="aboutus-content">
+      <div class="footer-left">
+        <h2>Our Information :</h2>
+        <h4>Email : xxxxx@gmail.com</h4>
+        <h4>Tel : 000-0000000</h4>
+      </div>
+      <div class="footer-right">
+        <ul>
+          <li><a href="{% url 'index:sheet-preview' %}">
+              <h3>Home</h3>
+            </a></li>
+          <li><a href="{% url 'sheets:sheet-list' %}">
+              <h3>Sheet</h3>
+            </a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="aboutus-group-item">
+      <a class="aboutus-item" href="#"><img src="{% static 'images/facebook.svg' %}" alt=""></a>
+      <a class="aboutus-item" href="#"><img src="{% static 'images/google-plus.svg' %}" alt=""></a>
+      <a class="aboutus-item" href="#"><img src="{% static 'images/instagram.svg' %}" alt=""></a>
+      <a class="aboutus-item" href="#"><img src="{% static 'images/twitter.svg' %}" alt=""></a>
+    </div>
+  </div>
+
+
+
+  <script src="{% static 'js/index.js' %}"></script>
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
+  </script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
+  </script>
+</body>
+
+</html>

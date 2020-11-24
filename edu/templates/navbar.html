@@ -1,0 +1,32 @@
+{% load cart_template_tags %}
+
+
+<header>
+    <div class="nav-mobile">
+        <a href="#" class="menu-button">
+            <span class="top-line"></span>
+            <span class="bottom-line"></span>
+        </a>
+        <a href="{% url 'index:sheet-preview' %}" class="logo">HOLYSh</a>
+        <a href="{% url 'account_login' %}" class="login"></a>
+    </div>
+
+    <div class="nav-larger">
+        <a href="{% url 'index:sheet-preview' %}" class="larger-logo">HOLYSh</a>
+        <ul class="larger-menu">
+            <li class="larger-menu-item"><a class="larger-item" href="{% url 'index:sheet-preview' %}">Home</a></li>
+            <li class="larger-menu-item"><a class="larger-item" href="{% url 'sheets:sheet-list' %}">Sheet</a></li>
+            {% if request.user.is_authenticated %}
+            <li class="larger-menu-item"><a class="larger-item" href="{% url 'account_logout' %}">logout</a></li>
+            <li class="larger-menu-item"><a class="larger-item"
+                    href="{% url 'cart:order-summary' %}">{{ request.user|cart_item_count }}<i
+                        class="fas fa-shopping-cart"></i></a></li>
+            {% else %}
+            <li class="larger-menu-item"><a class="larger-item" href="{% url 'account_login' %}">login</a></li>
+            <li class="larger-menu-item"><a class="larger-item" href="{% url 'account_signup' %}">signup</a></li>
+            {% endif %}
+
+        </ul>
+        <a href="{% url 'profile' %}" class="larger-login"></a>
+    </div>
+</header>
