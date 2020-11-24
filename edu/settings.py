@@ -194,3 +194,11 @@ CRISPY_TEMPLATE_PACK = 'bootstrap4'
 STRIPE_PUBLISH_KEY= 'pk_test_51HpyrhA2rOP4Mq0SkJ8lAOpSWnEarmLoKmNgAHhdnfMjGYr6KGdKmrooYFzZiHYjrb5kMmykRIP2ZCmBW6MGdtmc00YiuMxPvU'
 STRIPE_SECRET_KEY= 'sk_test_51HpyrhA2rOP4Mq0SoX0RnvDZSy8JOnXtCRD4YSU9Zhgak7mOB4W5OmEQJe9pU5HeRBue8IOO9lTAMcujOkEaUe2D00fAfs3pTs'
 
+
+MIDDLEWARE_CLASSES = (
+    # Simplified static file serving.
+    # https://warehouse.python.org/project/whitenoise/
+    'whitenoise.middleware.WhiteNoiseMiddleware',
+    ...
+)
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
